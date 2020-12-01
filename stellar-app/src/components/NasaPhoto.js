@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import NavBar from './NavBar';
 
 // Use hided api key in .env file
 const apiKey = process.env.REACT_APP_NASA_KEY;
@@ -26,17 +27,19 @@ const NasaPhoto = () => {
     console.debug(photoData);
 
     return (
-        <div>
-            {photoData.media_type === 'image' ? 
-                <img src={photoData.url} alt={photoData.title}/>
-            : <iframe
-                title='space-video'
-                src={photoData.url}
-                frameBorder='0'
-                gesture='media'
-                allow='encrypted-media'
-                allowFullScreen
-                className='photo'
+        <>
+         <NavBar/>
+            <div>
+                {photoData.media_type === 'image' ? 
+                    <img src={photoData.url} alt={photoData.title}/>
+                : <iframe
+                    title='space-video'
+                    src={photoData.url}
+                    frameBorder='0'
+                    gesture='media'
+                    allow='encrypted-media'
+                    allowFullScreen
+                    className='photo'
                 />
             }
             <div>
@@ -45,6 +48,7 @@ const NasaPhoto = () => {
                 <p>{photoData.explanation}</p>
             </div>
         </div>
+    </>
     )
 }
 
